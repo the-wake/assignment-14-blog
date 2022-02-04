@@ -1,15 +1,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Blog Spot</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
   <header>
     <nav class="navbar">
-      <h2><a class="nav-item" href="#">Home</a></h2>
-      <h2><a class="nav-item" href="#">Dashboard</a></h2>
-      <h2><a class="nav-item" href="#">Logout</a></h2>
+      <h2><a class="nav-item" href="/">Home</a></h2>
+      <h2><a class="nav-item" href="/dashboard">Dashboard</a></h2>
+      {{#if loggedIn}}
+      <h2><a class="nav-item logout-link" href="#">Log Out</a></h2>
+      {{else}}
+      <h2><a class="nav-item" href="/login">Sign In</a></h2>
+      {{/if}}
       <h1 class="app-title">Blog Spot</h1>
     </nav>
   </header>
@@ -18,5 +23,7 @@
   </main>
 
 </body>
+
+<script src="./js/logout.js"></script>
 
 </html>
