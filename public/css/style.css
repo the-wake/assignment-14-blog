@@ -41,9 +41,9 @@ h2 a {
   color: var(--primary);
 }
 
-header {
+/* header {
   margin-top: 50px;
-}
+} */
 
 main {
   margin: 20px auto;
@@ -103,7 +103,7 @@ input {
 
 .navbar {
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   background-color: var(--dark);
 }
 
@@ -126,6 +126,7 @@ input {
 }
 
 .app-title {
+  margin: 25px 0px 30px 15px;
   font-size: 3rem;
   background-color: var(--primary);
   color: var(--dark);
