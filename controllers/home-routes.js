@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth.js');
 
 router.get('/', (req, res) => {
-    res.render('all-posts')
+    res.render('all-posts', {loggedIn: req.session.loggedIn})
 });
 
 router.get('/dashboard', withAuth, (req, res) => {
@@ -10,7 +10,7 @@ router.get('/dashboard', withAuth, (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('layouts/dashboard');
+    res.render('all-posts-admin', {layout: 'dashboard'});
 });
 
 router.get('/login', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('login');
+    res.render('login', {loggedIn: req.session.loggedIn});
 });
 
 router.get('/signup', (req, res) => {
@@ -26,7 +26,7 @@ router.get('/signup', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('signup');
+    res.render('signup', {loggedIn: req.session.loggedIn});
 });
 
 

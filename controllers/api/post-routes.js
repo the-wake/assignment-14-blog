@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth.js');
 // Get all posts
 router.get('/', async (req, res) => {
     try {
-        res.status(200).render('all-posts');
+        res.status(200).render('all-posts', {loggedIn: req.session.loggedIn});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 // Get specific post
 router.get('/:id', withAuth, async (req, res) => {
     try {
-        res.status(200).render('single-post');
+        res.status(200).render('single-post', {loggedIn: req.session.loggedIn});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -25,7 +25,7 @@ router.get('/:id', withAuth, async (req, res) => {
 // Create a post
 router.post('/', withAuth, async (req, res) => {
     try {
-        res.status(200).render('single-post');
+        res.status(200).render('single-post', {loggedIn: req.session.loggedIn});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

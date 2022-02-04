@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    console.log(`${req.body.email}, ${req.body.password}`);
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {

@@ -1,19 +1,29 @@
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Blog Spot</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>Dashboard, Whatever That Is</h1>
-    </header>
-    <main class="container container-fluid mt-5">
-      {{{ body }}}
-    </main>
-  </div>
+  <header>
+    <nav class="navbar">
+      <h2><a class="nav-item" href="/">Home</a></h2>
+      <h2><a class="nav-item" href="/dashboard">Dashboard</a></h2>
+      {{#if loggedIn}}
+      <h2><a class="nav-item logout-link" href="#">Log Out</a></h2>
+      {{else}}
+      <h2><a class="nav-item" href="/login">Sign In</a></h2>
+      {{/if}}
+      <h1 class="app-title">My Dashboard</h1>
+    </nav>
+  </header>
+  <main>
+    <button class="btn"><a href="/dashboard/new">Create New Post</a></button>
+    {{{ body }}}
+  </main>
+
+  <script src="./js/logout.js"></script>
 
 </body>
 
