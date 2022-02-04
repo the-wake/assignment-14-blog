@@ -35,17 +35,17 @@ router.post('/', withAuth, async (req, res) => {
             body: req.body.body,
         });
 
-        // const allPosts = await Post.findAll().catch((err) => {
-        //     res.json(err);
-
-        // });
+        // const allPosts = await Post.findAll();
         // const posts = allPosts.map((post) => post.get({ plain: true }));
+        // console.log(posts);
         // res.status(200).render('all-posts', { posts, loggedIn: req.session.loggedIn });
 
-        req.session.save(() => {
-            req.session.loggedIn = true;
-            res.status(200).render('all-posts-admin', { layout: 'dashboard', loggedIn: req.session.loggedIn });
-        });
+        // Get page to render my posts
+        // req.session.save(() => {
+        //     console.log(req.session);
+        //     req.session.loggedIn = true;
+        //     res.status(200).render('all-posts-admin', { layout: 'dashboard', loggedIn: req.session.loggedIn });
+        // });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

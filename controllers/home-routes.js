@@ -5,14 +5,6 @@ router.get('/', (req, res) => {
     res.render('all-posts', {loggedIn: req.session.loggedIn})
 });
 
-router.get('/dashboard', withAuth, (req, res) => {
-    if (!req.session.loggedIn) {
-        res.render('login', {loggedIn: req.session.loggedIn});
-        return;
-    }
-    res.render('all-posts-admin', {layout: 'dashboard', loggedIn: req.session.loggedIn});
-});
-
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
