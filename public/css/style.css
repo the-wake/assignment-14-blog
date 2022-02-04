@@ -74,7 +74,7 @@ input {
   font-size: 1.3rem;
   text-decoration: none;
   padding: 6px 5px;
-  width: 100%;
+  width: 200px;
   display: block;
   margin: 5px 0;
   border-radius: var(--border-radius);

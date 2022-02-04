@@ -6,11 +6,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/dashboard', withAuth, (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
+    if (!req.session.loggedIn) {
+        res.render('login', {loggedIn: req.session.loggedIn});
         return;
     }
-    res.render('all-posts-admin', {layout: 'dashboard'});
+    res.render('all-posts-admin', {layout: 'dashboard', loggedIn: req.session.loggedIn});
 });
 
 router.get('/login', (req, res) => {
