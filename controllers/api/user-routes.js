@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.username = req.body.username;
       req.session.userId = req.body.id;
 
       res.status(200).json(dbUserData);
@@ -49,8 +50,12 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    const currentUserData = dbUserData.get({ plain: true })
+    // console.log(currentUserData)
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.username = currentUserData.username;
+      req.session.userId = currentUserData.id;
 
       res
         .status(200)

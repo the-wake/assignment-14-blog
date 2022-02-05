@@ -1,0 +1,22 @@
+<h2>Edit post</h2>
+
+<form class="form" id="edit-post-form">
+    <div class="form-group">
+        <label for="title">Post Title:</label>
+        <input type="text" id="title" class="form-input" name="post-title" value="{{post.title}}">
+    </div>
+    <div class="form-group">
+        <label for="content" class="form-label">Content:</label><br>
+        <textarea id="content" class="form-input" type="text" name="post-body">{{post.body}}</textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit Edits</button>
+    </div>
+    <div class="form-group">
+        <label for="id">Post ID</label>
+        <input type="text" id="post-id" class="form-input" name="post-id" value="{{post.id}}" disabled>
+    </div>
+</form>
+
+
+<script src="/js/edit.js"></script>
