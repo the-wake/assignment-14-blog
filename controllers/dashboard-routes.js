@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const session = require('express-session');
 const { Post } = require('../models');
 const withAuth = require('../utils/auth.js');
 
@@ -7,7 +8,11 @@ const withAuth = require('../utils/auth.js');
 // show all of my posts
 router.get('/', withAuth, async (req, res) => {
     try {
-        const allPosts = await Post.findAll();
+        const allPosts = await Post.findAll({
+            where: {
+                userId: req.session.userId
+            }
+        });
         const posts = allPosts.map((post) => post.get({ plain: true }));
         res.status(200).render('all-posts-admin', { posts, layout: 'dashboard', loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {

@@ -2,7 +2,9 @@
     <div class="card-header">
         <h2>Title: {{post.title}}</h2>
         <p id="timePosted">{{post.createdAt}}</p>
-        <p id="author">Author: {{post.user.username}}</p>
+        {{#if post.user.username}}
+        <p id="author">By {{post.user.username}}</p>
+        {{/if}}
     </div>
     <div class="card-body">
     <p>{{post.body}}</p>
