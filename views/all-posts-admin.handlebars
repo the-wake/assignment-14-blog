@@ -1,6 +1,10 @@
-<h2>All Posts</h2>
-
 {{#each posts as |post|}}
-<h3>Title: {{post.title}}</h3>
-<p>{{post.body}}</p>
+<div class="card">
+    <div class="card-header">
+        <h2>Title: {{post.title}}</h2>
+    </div>
+    <div class="card-body">
+    <p>{{post.body}}</p>
+    </div>
+</div>
 {{/each}}

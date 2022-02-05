@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.userId = req.body.id;
 
       res.status(200).json(dbUserData);
     });
@@ -38,7 +39,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    console.log(`${req.body.email}, ${req.body.password}`);
+    // console.log(`${req.body.email}, ${req.body.password}`);
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
