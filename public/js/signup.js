@@ -18,7 +18,6 @@ const signupFormHandler = async function (event) {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    // How do I pass the signed in status to the homepage when it renders?
     if (response.ok) {
       alert('Account created successfully!')
       document.location.replace('/dashboard');
