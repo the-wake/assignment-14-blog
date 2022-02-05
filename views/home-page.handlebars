@@ -12,6 +12,9 @@
             {{#if post.user.username}}
             <p id="author">By {{post.user.username}}</p>
             {{/if}}
+            {{#if post.comments}}
+            <p>{{post.comments.length}} Comment(s)</p>
+            {{/if}}
         </div>
     </div>
     {{/each}}

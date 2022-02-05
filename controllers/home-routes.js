@@ -9,12 +9,20 @@ router.get('/', async (req, res) => {
         const allPosts = await Post.findAll({
             order: [['createdAt', 'DESC']],
             limit: 4,
-            include: {
-                model: User,
-            }
+            include: [
+                {
+                    model: User,
+                },
+                {
+                    model: Comment,
+                    include: {
+                        model: User,
+                    }
+                },
+            ]
         });
         const posts = allPosts.map((post) => post.get({ plain: true }));
-        console.log(posts);
+
         res.status(200).render('home-page', { posts, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
         console.log(err);
@@ -23,17 +31,25 @@ router.get('/', async (req, res) => {
 });
 
 // all-posts
-// See 10 most recent posts
+// See all posts
 router.get('/all', async (req, res) => {
     try {
         const allPosts = await Post.findAll({
             order: [['createdAt', 'DESC']],
-            include: {
-                model: User,
-            }
+            include: [
+                {
+                    model: User,
+                },
+                {
+                    model: Comment,
+                    include: {
+                        model: User,
+                    }
+                },
+            ]
         });
         const posts = allPosts.map((post) => post.get({ plain: true }));
-        console.log(posts);
+
         res.status(200).render('all-posts', { posts, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
         console.log(err);
@@ -63,8 +79,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         }
         const post = postData.get({ plain: true });
         const comments = post.comments;
-        // console.log(post);
-        // console.log(comments);
+
         res.render('single-post', { post, comments, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
         res.status(500).json(err);

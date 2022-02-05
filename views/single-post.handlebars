@@ -19,11 +19,10 @@
         {{#each comments as |comment|}}
         <div class="card">
             <div class="card-body">
-                <p>
-                    <br>
-                    {{comment.body}}
-                    <hr>
-                    —{{comment.user.username}} at {{comment.createdAt}}
+                <br>
+                <p>{{comment.body}}</p>
+                <hr>
+                —{{comment.user.username}} at {{comment.createdAt}}
                 </p>
             </div>
         </div>
@@ -44,7 +43,6 @@
             {{!-- <label for="id">Post ID</label> --}}
             <input type="hidden" id="post-id" class="form-input" name="post-id" value="{{post.id}}" disabled>
         </div>
-        <button id="delete-btn" class="btn">Delete Post</button>
     </form>
 </div>
 

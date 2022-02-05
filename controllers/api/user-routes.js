@@ -41,7 +41,6 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    // console.log(`${req.body.email}, ${req.body.password}`);
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -52,7 +51,6 @@ router.post('/login', async (req, res) => {
     }
 
     const currentUserData = dbUserData.get({ plain: true })
-    // console.log(currentUserData)
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = currentUserData.username;

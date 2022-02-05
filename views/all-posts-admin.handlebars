@@ -9,6 +9,9 @@
     </div>
     <div class="card-body">
         <p id="timePosted">{{post.createdAt}}</p>
+        {{#if post.comments}}
+        <p>{{post.comments.length}} Comment(s)</p>
+        {{/if}}
     </div>
 </div>
 {{/each}}
