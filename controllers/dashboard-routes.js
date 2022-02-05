@@ -9,6 +9,7 @@ const withAuth = require('../utils/auth.js');
 router.get('/', withAuth, async (req, res) => {
     try {
         const allPosts = await Post.findAll({
+            order: [['createdAt', 'DESC']],
             where: {
                 userId: req.session.userId
             }

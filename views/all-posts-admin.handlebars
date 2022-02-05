@@ -1,12 +1,15 @@
-{{#each posts as |post|}}
-<div class="card"><a href="/dashboard/post/{{post.id}}">
+{{#if posts}}
+<h3>My Posts</h3>
+    {{#each posts as |post|}}
+    <div class="card">
         <div class="card-header">
-            <h2>{{post.title}}</h2>
+            <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+        </div>
+        <div class="card-body">
             <p id="timePosted">{{post.createdAt}}</p>
         </div>
-        {{!-- <div class="card-body">
-            <p>{{post.body}}</p>
-        </div> --}}
-    </a>
-</div>
-{{/each}}
+    </div>
+    {{/each}}
+    {{else}}
+<h3>Make a post to get started!</h3>
+{{/if}}

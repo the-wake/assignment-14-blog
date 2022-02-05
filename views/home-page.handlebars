@@ -1,14 +1,21 @@
-{{#each posts as |post|}}
-<div class="card">
-    <div class="card-header">
-        <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
-        <p id="timePosted">{{post.createdAt}}</p>
-        {{#if post.user.username}}
-        <p id="author">By {{post.user.username}}</p>
-        {{/if}}
+<section>
+    {{#if posts}}
+    <h3>Newest Posts</h3>
+    <h4><a href="/all">See all posts</a></h4>
+    {{#each posts as |post|}}
+    <div class="card">
+        <div class="card-header">
+            <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+        </div>
+        <div class="card-body">
+            <p id="timePosted">{{post.createdAt}}</p>
+            {{#if post.user.username}}
+            <p id="author">By {{post.user.username}}</p>
+            {{/if}}
+        </div>
     </div>
-    {{!-- <div class="card-body">
-        <p>{{post.body}}</p>
-    </div> --}}
-</div>
-{{/each}}
+    {{/each}}
+    {{else}}
+    <h2>Be the first one to post here!</h2>
+    {{/if}}
+</section>

@@ -1,12 +1,52 @@
 <div class="card">
     <div class="card-header">
-        <h2>Title: {{post.title}}</h2>
+        <h2>{{post.title}}</h2>
         <p id="timePosted">{{post.createdAt}}</p>
         {{#if post.user.username}}
         <p id="author">By {{post.user.username}}</p>
         {{/if}}
     </div>
     <div class="card-body">
-    <p>{{post.body}}</p>
+        <p>{{post.body}}</p>
+        {{!-- Could add code here to render an edit link only if active user == post.user, but Handlebars doesn't do logical operators so it would take some doing. --}}
     </div>
 </div>
+
+<div id="comments">
+    {{#if comments}}
+    <div id="all-comments">
+        <h4>Comments</h4>
+        {{#each comments as |comment|}}
+        <div class="card">
+            <div class="card-body">
+                <p>
+                    <br>
+                    {{comment.body}}
+                    <hr>
+                    —{{comment.user.username}} at {{comment.createdAt}}
+                </p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    <form class="form" id="new-comment-form">
+        <div class="form-group">
+            {{!-- <label for="content" class="form-label">Leave a Comment</label><br> --}}
+            <textarea id="comment-body" class="form-input" type="text" name="comment-body"
+                placeholder="Leave a comment"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Submit Comment</button>
+        </div>
+        <div class="form-group">
+            {{!-- <label for="id">Post ID</label> --}}
+            <input type="hidden" id="post-id" class="form-input" name="post-id" value="{{post.id}}" disabled>
+        </div>
+        <button id="delete-btn" class="btn">Delete Post</button>
+    </form>
+</div>
+
+
+<script src="/js/comment.js"></script>

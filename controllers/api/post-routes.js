@@ -4,8 +4,6 @@ const { restore } = require('../../models/User');
 const withAuth = require('../../utils/auth.js');
 
 // /api/posts
-// Get all posts
-
 // Create a post
 router.post('/', withAuth, async (req, res) => {
     // console.log(req.session.userId);
@@ -14,27 +12,15 @@ router.post('/', withAuth, async (req, res) => {
             title: req.body.title,
             body: req.body.body,
             userId: req.session.userId,
-            // username: req.session.username,
         });
-        // console.log(postData.dataValues);
-
-        // const allPosts = await Post.findAll();
-        // const posts = allPosts.map((post) => post.get({ plain: true }));
-        // console.log(posts);
-        // res.status(200).render('all-posts', { posts, loggedIn: req.session.loggedIn });
-
-        // Get page to render my posts
-        // req.session.save(() => {
-        //     console.log(req.session);
-        //     req.session.loggedIn = true;
-        //     res.status(200).render('all-posts-admin', { layout: 'dashboard', loggedIn: req.session.loggedIn });
-        // });
+        res.status(200).json(postData);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 });
 
+// Update post
 router.put('/:id', withAuth, async (req, res) => {
     try {
         const updatedPost = await Post.update({
@@ -66,5 +52,6 @@ router.delete('/:id', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 })
+
 
 module.exports = router;

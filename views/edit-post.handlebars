@@ -13,12 +13,13 @@
         <button class="btn btn-primary" type="submit">Submit Edits</button>
     </div>
     <div class="form-group">
-        <label for="id">Post ID</label>
-        <input type="text" id="post-id" class="form-input" name="post-id" value="{{post.id}}" disabled>
+        {{!-- <label for="id">Post ID</label> --}}
+        <input type="hidden" id="post-id" class="form-input" name="post-id" value="{{post.id}}" disabled>
     </div>
+    <button id="delete-btn" class="btn">Delete Post</button>
 </form>
 
-<button id="delete-btn" class="btn">Delete Post</button>
+<hr>
 
 
 <script src="/js/edit.js"></script>
