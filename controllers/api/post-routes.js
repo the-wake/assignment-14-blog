@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User } = require('../../models');
 const { restore } = require('../../models/User');
 const withAuth = require('../../utils/auth.js');
 
@@ -40,12 +40,30 @@ router.put('/:id', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
+        const postData = await Post.findByPk(req.params.id, {
+            where: {
+                id: req.params.id
+            },
+            include: [
+                {
+                    model: User,
+                },
+            ]
+        });
+
+        const post = postData.get({ plain: true });
+
+        if (req.session.username != post.user.username) {
+            res.status(403).send('Nice try, but you can\'t delete a post you don\'t own.');
+            return;
+        }
+
         Post.destroy({
             where: {
                 id: req.params.id,
             }
         });
-        res.status(200).json(`Post ID ${req.params.id} successfully deleted.`)
+        res.status(200).json(post);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

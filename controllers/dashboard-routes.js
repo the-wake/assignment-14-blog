@@ -41,7 +41,7 @@ router.get('/new', withAuth, async (req, res) => {
     }
 });
 
-// Edit a post
+// Load edit page
 router.get('/post/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -63,7 +63,13 @@ router.get('/post/:id', withAuth, async (req, res) => {
         }
 
         const post = postData.get({ plain: true });
-        res.render('edit-post', { post, layout: 'dashboard', loggedIn: req.session.loggedIn, userSession: req.session.username });
+        
+        if (req.session.username != post.user.username) {
+            res.status(403).send('You don\'t have permission to access this page.');
+            return;
+        }
+
+        res.render('edit-post', { post, layout: 'dashboard', loggedIn: req.session.loggedIn, userSession: req.session.username, postAuthor: post.user.username });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
