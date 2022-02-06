@@ -24,8 +24,6 @@ router.get('/', async (req, res) => {
                 },
             ]
         });
-        console.log('------------------------------------------------------');
-        // const rawPosts = allPosts.map((post) => console.log(post));
         const posts = allPosts.map((post) => post.get({ plain: true }));
         posts.forEach(post => post.createdAt = setDate(post.createdAt));
 
