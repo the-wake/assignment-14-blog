@@ -3,6 +3,8 @@
 ## Description
 This is a full-stack blog webpage hosted via GitHub and deployed via Heroku.
 
+[GitHub Repository](https://github.com/the-wake/assignment-14-blog)
+
 [Heroku Live Link](https://vast-citadel-10428.herokuapp.com)
 
 ## Installation
