@@ -2,6 +2,7 @@ const router = require('express').Router();
 const session = require('express-session');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth.js');
+const { formatDate, setDate } = require('../utils/helpers.js');
 
 
 // dashboard
@@ -23,6 +24,8 @@ router.get('/', withAuth, async (req, res) => {
             ]
         });
         const posts = allPosts.map((post) => post.get({ plain: true }));
+        posts.forEach(post => post.createdAt = setDate(post.createdAt));
+        
         res.status(200).render('all-posts-admin', { posts, layout: 'dashboard', loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
         console.log(err);

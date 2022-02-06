@@ -10,15 +10,6 @@ Post.init(
     body: DataTypes.STRING
   },
   {
-    // hooks: {
-    //   beforeCreate: (newPost) => {
-    //     newPost.
-    //   },
-    // //   beforeCreate: async (dateTime) => {
-    // //     dateTime.createdAt = await formatDate(dateTime.createdAt);
-    // //     return dateTime;
-    // //   },
-    // },
     sequelize,
     timestamps: true,
     freezeTableName: true,

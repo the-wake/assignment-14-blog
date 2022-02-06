@@ -1,6 +1,9 @@
 const router = require('express').Router();
+const { text } = require('express');
+const { json } = require('express/lib/response');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth.js');
+const { formatDate, setDate } = require('../utils/helpers.js');
 
 // homepage
 // See 4 most recent posts
@@ -21,7 +24,10 @@ router.get('/', async (req, res) => {
                 },
             ]
         });
+        console.log('------------------------------------------------------');
+        // const rawPosts = allPosts.map((post) => console.log(post));
         const posts = allPosts.map((post) => post.get({ plain: true }));
+        posts.forEach(post => post.createdAt = setDate(post.createdAt));
 
         res.status(200).render('home-page', { posts, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
@@ -49,6 +55,7 @@ router.get('/all', async (req, res) => {
             ]
         });
         const posts = allPosts.map((post) => post.get({ plain: true }));
+        posts.forEach(post => post.createdAt = setDate(post.createdAt));
 
         res.status(200).render('all-posts', { posts, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
@@ -76,10 +83,11 @@ router.get('/post/:id', withAuth, async (req, res) => {
         if (!postData) {
             res.status(404).json({ message: 'No post with this ID!' });
             return;
-        }
+        };
         const post = postData.get({ plain: true });
         const comments = post.comments;
-
+        post.createdAt = setDate(post.createdAt);
+        
         res.render('single-post', { post, comments, loggedIn: req.session.loggedIn, userSession: req.session.username });
     } catch (err) {
         res.status(500).json(err);
