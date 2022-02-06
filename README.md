@@ -14,7 +14,7 @@ No installation is required. This application is hosted via GitHub, with a live 
 Users can see the most recent posts from the homepage, but to access further functionality, they will need to create an account. Once an account is created (and the user is logged in), they will be able to create posts, edit their own posts, and comment on other users' posts (and their own).
 
 ## Functionality
-The webpage will validate user login status via the session at most steps, requiring login if not logged in. 
+The webpage will validate user login status via the session at most steps, requiring login if not logged in. Since the application is primarily run on the server side, most functionality is handled via the server requesting and rendering information to the user via fetch requests, express, MySQL2, and Sequelize.
 
 ## Tools Used
 * JavaScript
@@ -32,5 +32,6 @@ The webpage will validate user login status via the session at most steps, requi
 
 ## Future Functionality
 * The security could definitely be imporved, even with the few features I added to prevent easy manipulation of others' posts.
+* On that note, more robust account creation features would be an easy target for early improvements.
 * Comments could become editable.
 * A search feature could be implemented.
